@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSS Key Concepts</title>
+    <link rel="stylesheet" href="style.css"></link>
+  </head>
+  <body>
+    <nav id="navbar">
+      <header>CSS Key Concepts</header>
+      <div id=links>
+      <a class="nav-link" href="#introduction">Introduction</a>
+      <a class="nav-link" href="#syntax">Syntax</a>
+      <a class="nav-link" href="#box_model">Box Model</a>
+      <a class="nav-link" href="#shorthand_properties">Shorthand Properties</a>
+      <a class="nav-link" href="#flexbox_layout">Flexbox Layout</a>
+      <a class="nav-link" href="#grid_layout">Grid Layout</a>
+      <a class="nav-link" href="#selectors">Selectors</a>
+      <a class="nav-link" href="#media_queries">Media Queries</a>
+      <a class="nav-link" href="#animation">Animation</a>
+      <a class="nav-link" href="#reference">Reference</a>
+      </div>
+    </nav>
+    <main id="main-doc">
+      <section class="main-section" id="introduction"> <header>Introduction</header>
+        <p>Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML (including XML dialects such as SVG, MathML or XHTML). CSS describes how elements should be rendered on screen, on paper, in speech, or on other media.</p>
+      </section>
+      <section class="main-section" id="syntax">
+        <header>Syntax</header>
+        <p>The basic building blocks of CSS are:</p>
+        <ul>
+          <li>The <strong>property</strong> which is an identifier, that is a human-readable name, that defines which feature is considered.</li>
+          <li>The <strong>value</strong> which describe how the feature must be handled by the engine. Each property has a set of valid values, defined by a formal grammar, as well as a semantic meaning, implemented by the browser engine.</li>
+          </ul>
+        <p>Together, a property and value pair are called a <strong>declaration</strong>. They are case-insensitive, and are separated by a colon ':'.</p>
+        <img src="https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax/css_syntax_-_declaration.png" alt="diagram of a declaration">
+        <p>Declarations are grouped in <strong>declaration blocks</strong> delimited by an opening brace, '{', and a closing one, '}'. Declarations are separated by semi-colons inside these blocks.</p>
+        <img src="https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax/declaration-block.png" alt="diagram of a declaration block">
+        <p>Preceeding declaration blocks are <strong>selectors</strong>, which are conditions selecting some elements of the page. A <strong>selector group</strong> and an associated declarations block, together, are called a <strong>ruleset</strong>, or often a <strong>rule</strong>.</p>
+        <img src="https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax/ruleset.png" alt="diagram of a ruleset">
+        <p>Rulesets are just one kind of <strong>statement</strong>. The other kind is <strong>at-rules</strong>. These start with an at sign, '@', followed by an identifier and then continuing up to the end of the statement, that is up to the next semi-colon (;) outside of a block, or the end of the next block. They are used to convey meta-data information (like @charset or @import), conditional information (like @media or @document), or descriptive information (like @font-face).</p>
+      </section>
+      <section class="main-section" id="box_model">
+        <header>Box Model</header>
+        <p>When laying out a document, the browser's rendering engine represents each element as a rectangular box according to the standard <strong>CSS basic box model</strong>. CSS determines the size, position, and properties (color, background, border size, etc.) of these boxes.</p>
+        <p>Every box is composed of four parts (or <em>areas</em>), defined by their respective edges: the <em>content edge</em>, <em>padding edge</em>, <em>border edge</em>, and <em>margin edge</em>.</p>
+        <img src="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model/boxmodel-(3).png" alt="diagram of box model">
+      </section>
+      <section class="main-section" id="shorthand_properties">
+        <header>Shorthand Properties</header>
+        <p><strong>Shorthand properties</strong> are CSS properties that let you set the values of multiple other CSS properties simultaneously. Using a shorthand property, you can write more concise (and often more readable) style sheets, saving time and energy.</p>
+        <p>The CSS specification defines shorthand properties to group the definition of common properties acting on the same theme. For instance, the CSS <code>background</code> property is a shorthand property that's able to define the values of <code>background-color</code>, <code>background-image</code>, <code>background-repeat</code>, and <code>background-position</code>. Similarly, the most common font-related properties can be defined using the shorthand <code>font</code>, and the different margins around a box can be defined using the <code>margin</code> shorthand.</p>
+        <p>A background with the following properties ...</p>
+        <div class="code_example">
+         <pre><code class="code_block">background-color: #000;
+      background-image: url(images/bg.gif);
+      background-repeat: no-repeat;
+      background-position: left top;</code></pre>
+        </div>
+        <p>... can be shortened to just one declaration:</p>
+        <div class="code_example">
+        <pre><code class="code_block">background: #000 url(images/bg.gif) no-repeat left top;</code></pre>
+          </div>
+        <p>For a font, the following declarations ...</p>
+        <div class="code_example">
+        <pre><code class="code_block">font-style: italic;
+      font-weight: bold;
+      font-size: .8em;
+      line-height: 1.2;
+      font-family: Arial, sans-serif;</code></pre>
+        </div>
+        <p>... can be shortened to the following:</p>
+        <div class="code_example">
+        <pre><code class="code_block">font: italic bold .8em/1.2 Arial, sans-serif;</code></pre>
+        </div>
+        <p>There are many more shorthand properties to make your code more concise. CSS also provides a universal shorthand property, <code>all</code>, which applies its value to every property in the document. Its purpose is to change the properties' inheritance model.</p>
+      </section>
+      <section class="main-section" id="flexbox_layout">
+        <header>Flexbox Layout</header>
+        <p><strong>CSS Flexible Box Layout</strong> is a module of CSS that defines a CSS box model optimized for user interface design, and the layout of items in one dimension. In the flex layout model, the children of a flex container can be laid out in any direction, and can “flex” their sizes, either growing to fill unused space or shrinking to avoid overflowing the parent. Both horizontal and vertical alignment of the children can be easily manipulated.</p>
+        <p>In the following example a container has been set to <code>display: flex</code>, which means that the three child items become flex items. The value of <code>justify-content</code> has been set to <code>space-between</code> in order to space the items out evenly on the main axis. An equal amount of space is placed between each item with the left and right items being flush with the edges of the flex container. You can also see that the items are stretching on the cross axis, due to the default value of <code>align-items</code> being <code>stretch</code>. The items stretch to the height of the flex container, making them each appear as tall as the tallest item.</p>
+    <div class="box">
+      <div>One</div>
+      <div>Two</div>
+      <div>Three
+        <br>has
+        <br>extra
+        <br>text
+      </div>
+    </div>
+        <h3>HTML</h3>
+        <div class="code_example">
+      <pre><code class="code_block">&ltdiv class="box"&gt
+        &ltdiv&gtOne&lt/div&gt
+        &ltdiv&gtTwo&lt/div&gt
+        &ltdiv&gtThree
+          &ltbr&gthas
+          &ltbr&gtextra
+          &ltbr&gttext
+        &lt/div&gt
+      &lt/div&gt</code></pre>
+        </div>
+          <h3>CSS</h3>
+        <div class="code_example gridimg_flexcss">
+      <pre><code class="code_block">.box {
+        display: flex;
+        justify-content: space-between;
+      }</code></pre>
+        </div>
+      </section>
+      <section class="main-section" id="grid_layout">
+        <header>Grid Layout</header>
+        <p><strong>CSS Grid Layout</strong> excels at dividing a page into major regions or defining the relationship in terms of size, position, and layer, between parts of a control built from HTML primitives.</p>
+        <p>Like tables, grid layout enables an author to align elements into columns and rows. However, many more layouts are either possible or easier with CSS grid than they were with tables. For example, a grid container's child elements could position themselves so they actually overlap and layer, similar to CSS positioned elements.</p>
+        <p>The example below shows a three-column track grid with new rows created at a minimum of 100 pixels and a maximum of auto. Items have been placed onto the grid using line-based placement.</p>
+        <h3>HTML</h3>
+        <div class="code_example">
+      <pre><code class="code_block">&ltdiv class="wrapper"&gt
+        &ltdiv class="one"&gtOne&lt/div&gt
+        &ltdiv class="two"&gtTwo&lt/div&gt
+        &ltdiv class="three"&gtThree&lt/div&gt
+        &ltdiv class="four"&gtFour&lt/div&gt
+        &ltdiv class="five"&gtFive&lt/div&gt
+        &ltdiv class="six"&gtSix&lt/div&gt
+      &lt/div&gt</code></pre>
+        </div>
+        <h3>CSS</h3>
+        <div class="code_example">
+      <pre><code class="code_block">.wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        grid-auto-rows: minmax(100px, auto);
+      }
+      .one {
+        grid-column: 1 / 3;
+        grid-row: 1;
+      }
+      .two {
+        grid-column: 2 / 4;
+        grid-row: 1 / 3;
+      }
+      .three {
+        grid-column: 1;
+        grid-row: 2 / 5;
+      }
+      .four {
+        grid-column: 3;
+        grid-row: 3;
+      }
+      .five {
+        grid-column: 2;
+        grid-row: 4;
+      }
+      .six {
+        grid-column: 3;
+        grid-row: 4;
+      }</code></pre>
+        </div>
+        <div class="code_example gridimg_flexcss">
+    <div class="wrapper">
+      <div class="one">One</div>
+      <div class="two">Two</div>
+      <div class="three">Three</div>
+      <div class="four">Four</div>
+      <div class="five">Five</div>
+      <div class="six">Six</div>
+    </div>    
+        </div>
+      </section>
+      <section class="main-section" id="selectors">
+        <header>Selectors</header>
+        <p><strong>CSS selectors</strong> define the elements to which a set of CSS rules apply. Basic selectors are:</p>
+        <ul>
+          <li>universal selector</li>
+            <ul>
+              <li>Selects all elements. Optionally, it may be restricted to a specific namespace or to all namespaces.</li>
+              <li><strong>Syntax: </strong><code>* ns|* *|*</code></li>
+              <li><strong>Example: </strong><code>*</code> will match all the elements of the document.</li>
+            </ul>
+          <li>type selector</li>
+            <ul>
+              <li>Selects all elements that have the given node name.</li>
+              <li><strong>Syntax: </strong><code>elementname</code></li>
+              <li><strong>Example: </strong><code>input</code> will match any <code>&ltinput&gt</code> element.</li>
+            </ul>
+          <li>class selector</li>
+            <ul>
+              <li>Selects all elements that have the given class attribute.</li>
+              <li><strong>Syntax: </strong><code>.classname</code></li>
+              <li><strong>Example: </strong><code>.index</code> will match any element that has a class of "index".</li>
+            </ul>
+          <li>ID selector</li>
+            <ul>
+              <li>Selects an element based on the value of its id attribute. There should be only one element with a given ID in a document.</li>
+              <li><strong>Syntax: </strong><code>#idname</code></li>
+              <li><strong>Example: </strong><code>#toc</code> will match the element that has the ID "toc".</li>
+            </ul>
+          <li>attribute selector</li>
+            <ul>
+              <li>Selects all elements that have the given attribute.</li>
+              <li><strong>Syntax: </strong><code>[attr] [attr=value] [attr~=value] [attr|=value] [attr^=value] [attr$=value] [attr*=value]</code></li>
+              <li><strong>Example: </strong><code>[autoplay]</code> will match all elements that have the autoplay attribute set (to any value).</li>
+            </ul>
+        </ul>
+      </section>
+      <section class="main-section" id="media_queries">
+        <header>Media Queries</header>
+        <p><strong>Media queries</strong> let you adapt your site or app depending on the presence or value of various device characteristics and parameters.</p>
+        <p>They are a key component of responsive design. For example, a media query can shrink the font size on small devices, increase the padding between paragraphs when a page is viewed in portrait mode, or bump up the size of buttons on touchscreens.</p>
+        <p>In CSS, use the <code>@media at-rule</code> to conditionally apply part of a style sheet based on the result of a media query. Use <code>@import</code> to conditionally apply an entire style sheet.</p>
+      </section>
+      <section class="main-section" id="animation">
+        <header>Animation</header>
+        <p>The <code>animation</code> property is specified as one or more single animations, separated by commas. Each individual animation is specified as:</p>
+        <ul>
+          <li>zero or one occurrences of the following values:</li>
+          <ul>
+            <li><code>&ltsingle-animation-iteration-count&gt</code> - the number of times the animation is played</li>
+            <li><code>&ltsingle-animation-direction&gt</code> - the direction in which an animation is played</li>
+            <li><code>&ltsingle-animation-fill-mode&gt</code> - determines how styles should be applied to the animation's target before and after its execution</li>
+            <li><code>&ltsingle-animation-play-state&gt</code> - determines whether the animation is playing or not</li>
+            </ul>
+          <li>an optional name for the animation, which may be <code>&ltnone&gt</code>, a <code>&ltcustom-ident&gt</code>, or a <code>&ltstring&gt</code></li>
+          <li>zero, one, or two <code>&lttime&gt</code> values</li>
+        </ul>
+        <p>The order of values within each animation definition is important: the first value that can be parsed as a <code>&lttime&gt</code> is assigned to the <code>&ltanimation-duration&gt</code>, and the second one is assigned to <code>&ltanimation-delay&gt</code>.</p>
+        <p>The order within each animation definition is also important for distinguishing <code>&ltanimation-name&gt</code> values from other keywords. When parsed, keywords that are valid for properties other than <code>&ltanimation-name&gt</code>, and whose values were not found earlier in the shorthand, must be accepted for those properties rather than for <code>&ltanimation-name&gt</code>. Furthermore, when serialized, default values of other properties must be output in at least the cases necessary to distinguish an <code>&ltanimation-name&gt</code> that could be a value of another property, and may be output in additional cases.</p>
+      </section>
+      <section class="main-section" id="reference">
+        <header>Reference</header>
+        <p>All text borrowed from the  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS#reference" target="_blank">MDN CSS Reference links</a>.</p>
+      </section>
+    </main>
+  </body>
+</html>
